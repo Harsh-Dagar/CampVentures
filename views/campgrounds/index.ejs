@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampGrounds</title>
+</head>
+<body>
+    <h1>LIST OF CAMPGROUNDS</h1>
+    <button style="background-color: green;"><a href="/campgrounds/new" style="text-decoration: none; color: whitesmoke; font-weight: 600;">ADD</a></button>
+    <ul>
+    <%for(let campground of campgrounds){%>
+        <li><a href="/campgrounds/<%=campground._id %>"><%= campground.title %></a></li>
+
+    <% } %> 
+    </ul>
+
+    
+</body>
+</html>
