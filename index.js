@@ -2,6 +2,7 @@ const express=require('express');
 const app=express();
 const port=3000;
 const path=require('path');
+const ejsMate=require('ejs-mate');
 const mongoose=require('mongoose');
 const Campground = require('./models/campground');
 const methodOverride=require('method-override');
@@ -16,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/camp-venture', {
     console.log(err);
 })
 
-
+app.engine('ejs',ejsMate);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views')); 
 
