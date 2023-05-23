@@ -7,3 +7,10 @@ module.exports.campgroundJOISchema= Joi.object({
         location:Joi.string().required()
     }).required()
 });
+
+module.exports.reviewJOISchema= Joi.object({
+    review: Joi.object({
+        rating: Joi.number().required(),
+        body: Joi.string().required(),
+    }).required()
+});
