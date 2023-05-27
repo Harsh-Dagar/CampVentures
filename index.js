@@ -3,18 +3,20 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const ejsMate = require('ejs-mate');
-const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/expressError');
 const session=require('express-session');
 const flash=require('connect-flash');
-const Joi = require('joi');
-const { campgroundJOISchema, reviewJOISchema } = require('./JoiSchemas');
 const mongoose = require('mongoose');
-const Campground = require('./models/campground');
-const Review = require('./models/review');
 const methodOverride = require('method-override');
+const passport=require('passport');
+const LocalStrategy=require('passport-local');
+const User = require('./models/user');
+
+
+
 const campgrounds=require('./routes/campgrounds');
 const reviews=require('./routes/reviews');
+const userRegister=require('./routes/userReg');
 // mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://localhost:27017/camp-venture',{
     useNewUrlParser: true,
@@ -47,24 +49,44 @@ const sessionConfig={
 app.use(session(sessionConfig));
 app.use(flash());
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// use static authenticate method of model in LocalStrategy
+passport.use(new LocalStrategy(User.authenticate()));
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+// app.get('/fakeU',async(req,res,next)=>{
+//     const user=new User({
+//         email:'radom@gmffail.com',
+//         username:'hdoppp'
+//     })
+//     const newUser=await User.register(user,'randomPass');
+//     res.send(newUser); 
+    
+// })
 app.use((req,res,next)=>{
+    res.locals.currentuser=req.user; 
     res.locals.success=req.flash('success');
     res.locals.error=req.flash('error');
     next();
 })
-
-
 app.get('/', (req, res) => {
-    res.send("HELLO THIS IS /");
+    res.render('campgrounds/home');
 })
 
-app.get('/home', (req, res) => {
-    res.render('home');
-})
+// app.get('/home', (req, res) => {
+//     res.render('home');
+// })
 
 
 app.use('/campgrounds',campgrounds);
 app.use('/campgrounds/:id/reviews',reviews);
+app.use('/',userRegister);
 
 app.all('*', (req, res, next) => {
     next(new ExpressError("Page not found", 404));

@@ -2,11 +2,10 @@ const express = require('express');
 const router=express.Router();
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/expressError');
-const Joi = require('joi');
-const { campgroundJOISchema, reviewJOISchema } = require('../JoiSchemas');
+const { campgroundJOISchema } = require('../JoiSchemas');
+const {isSignedin}=require('../middleware');
 
 const Campground = require('../models/campground');
-const Review = require('../models/review');
 const methodOverride = require('method-override');
 
 const validateCampground = (req, res, next) => {
@@ -20,10 +19,11 @@ const validateCampground = (req, res, next) => {
 
 
 
-router.get('/new', (req, res) => {
+router.get('/new',isSignedin, (req, res) => {
+    // res.send(req.user);
     res.render('campgrounds/new');
 })
-router.post('/', validateCampground, catchAsync(async (req, res, next) => {
+router.post('/',isSignedin, validateCampground, catchAsync(async (req, res, next) => {
     const campground = await new Campground(req.body.campground);
     await campground.save();
     console.log(campground);
@@ -45,20 +45,20 @@ router.get('/:id', catchAsync(async (req, res, next) => {
     console.log(campground);
     res.render('campgrounds/show', { campground });
 }))
-router.get('/:id/edit', catchAsync(async (req, res, next) => {
+router.get('/:id/edit',isSignedin, catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const campground = await Campground.findById(id);
     res.render('campgrounds/edit', { campground });
 
 }))
-router.put('/:id', validateCampground, catchAsync(async (req, res, next) => {
+router.put('/:id',isSignedin, validateCampground, catchAsync(async (req, res, next) => {
     const { id } = req.params;
     await Campground.findByIdAndUpdate(id, { ...req.body.campground });
     req.flash('success','Campground is Successfully updated!!!!');
     res.redirect(`/campgrounds/${id}`);
 
 }))
-router.delete('/:id', catchAsync(async (req, res, next) => {
+router.delete('/:id',isSignedin, catchAsync(async (req, res, next) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
     req.flash('success','Campground is Successfully Deleted!!!!');
