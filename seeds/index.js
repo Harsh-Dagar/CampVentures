@@ -25,6 +25,7 @@ const seedDB=async()=>{
         const cmp=new Campground({
             location:`${cities[randCity1000].city}, ${cities[randCity1000].state}`,
             title: `${randGen(descriptors)} ${randGen(places)}`,
+            author:'647113c71e94525ce49a232c',
             image:`https://source.unsplash.com/collection/190727/1600×900`,
             description:`Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis ducimus, aliquam ad eaque quaerat enim odit laudantium a vel natus nulla dignissimos reiciendis unde voluptatibus tempora delectus temporibus, nisi ex.`,
             price:price
