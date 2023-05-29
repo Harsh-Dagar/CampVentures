@@ -1,11 +1,13 @@
 <% layout('layouts/boilerplate') %>
 
     <h1 class="text-center mb-5">Update Campground</h1>
-    <form action="/campgrounds/<%=campground._id%>?_method=PUT" class="campgroundValidation" method="POST" novalidate>
+    <div class=" m-auto mb-3" style="max-width: 30rem;">
+    <form action="/campgrounds/<%=campground._id%>?_method=PUT" class="campgroundValidation" method="POST"  enctype="multipart/form-data" novalidate>
         <div class=" mb-3">
             <label for="title" class=" col-form-label">Title</label>
             <div class="">
-                <input type="text" class="form-control" id="title" name="campground[title]"  value="<%=campground.title %>" required>
+                <input type="text" class="form-control" id="title" name="campground[title]"
+                    value="<%=campground.title %>" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -14,13 +16,14 @@
         <div class=" mb-3">
             <label for="location" class=" col-form-label">Location</label>
             <div class="">
-                <input type="text" class="form-control" id="location" name="campground[location]" value="<%= campground.location%>" required>
+                <input type="text" class="form-control" id="location" name="campground[location]"
+                    value="<%= campground.location%>" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
         </div>
-        <div class=" mb-3">
+        <!-- <div class=" mb-3">
             <label for="image" class=" col-form-label">Image URL</label>
             <div class="">
                 <input type="text" class="form-control" id="image" name="campground[image]" value="<%= campground.image%>" required>
@@ -28,24 +31,56 @@
                     Looks good!
                 </div>
             </div>
+        </div> -->
+        <div class=" mb-3">
+            <label for="image" class=" col-form-label">Image URL</label>
+            <div class="">
+                <input type="file" class="form-control" id="image" name="image" multiple >
+    
+            </div>
         </div>
         <div class=" mb-3">
             <label for="price" class=" col-form-label">Price</label>
             <div class="input-group col-sm-4" style="">
                 <span class="input-group-text">₹</span>
-                <input id="price" name="campground[price]" type="number" class="form-control" aria-label="Amount (to the nearest Rupee)"  value="<%= campground.price%>" placeholder="0.00" required>
+                <input id="price" name="campground[price]" type="number" class="form-control"
+                    aria-label="Amount (to the nearest Rupee)" value="<%= campground.price%>" placeholder="0.00"
+                    required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
         </div>
-        <div class="mb-5">
+        <div class="mb-3">
             <label class="form-label" for="description">Description</label>
-            <textarea id="description" name="campground[description]" class="form-control" aria-label="Description" required><%= campground.description%></textarea>
+            <textarea id="description" name="campground[description]" class="form-control" aria-label="Description"
+                required><%= campground.description%></textarea>
             <div class="valid-feedback">
                 Looks good!
             </div>
-          </div>
+        </div>
+        <div class="mb-5">
+            <ul class="list-group">
+
+                <% campground.images.forEach((img,index)=>{ %>
+                    <li class="list-group-item">
+                        <div class="mb-1"> 
+                            <input id="image-<%=index%>" class="form-check-input me-1" type="checkbox" name="deleteImages[]"  value="<%=img.filename%>" >
+              
+                            <label class="form-check-label" for="image-<%=index%>">Delete</label>
+                        </div>
+                        <div style="width: auto;">
+                        <img  class=""  src="<%=img.thumbnail%>" alt="">
+                        </div>
+                    </li>
+                    <% }) %>
+            </ul>
+
+  
+
+        </div>
+
 
         <button type="submit" class="btn btn-info" style="color:white;">Update Campground</button>
     </form>
+</div>

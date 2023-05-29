@@ -26,9 +26,20 @@ const seedDB=async()=>{
             location:`${cities[randCity1000].city}, ${cities[randCity1000].state}`,
             title: `${randGen(descriptors)} ${randGen(places)}`,
             author:'647113c71e94525ce49a232c',
-            image:`https://source.unsplash.com/collection/190727/1600×900`,
+            // image:`https://source.unsplash.com/collection/190727/1600×900`,
             description:`Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis ducimus, aliquam ad eaque quaerat enim odit laudantium a vel natus nulla dignissimos reiciendis unde voluptatibus tempora delectus temporibus, nisi ex.`,
-            price:price
+            price:price,
+            images: [
+                {
+                  url: 'https://res.cloudinary.com/dyahczaxt/image/upload/v1685335290/CampVentures/s9vempkfvp0onqv9zkfd.jpg',
+                  filename: 'CampVentures/s9vempkfvp0onqv9zkfd'
+                },
+                {
+                  url: 'https://res.cloudinary.com/dyahczaxt/image/upload/v1685335292/CampVentures/jbezcdjave1suf5gv8ny.jpg',
+                  filename: 'CampVentures/jbezcdjave1suf5gv8ny'
+
+                }
+              ]
             
         })
         await cmp.save();
