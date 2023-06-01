@@ -29,11 +29,11 @@ const seedDB=async()=>{
             // image:`https://source.unsplash.com/collection/190727/1600×900`,
             description:`Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis ducimus, aliquam ad eaque quaerat enim odit laudantium a vel natus nulla dignissimos reiciendis unde voluptatibus tempora delectus temporibus, nisi ex.`,
             price:price,
+            geometry: { 
+                type: "Point",
+                 coordinates: [ 77.0365735, 28.610512 ]
+            },
             images: [
-                {
-                  url: 'https://res.cloudinary.com/dyahczaxt/image/upload/v1685335290/CampVentures/s9vempkfvp0onqv9zkfd.jpg',
-                  filename: 'CampVentures/s9vempkfvp0onqv9zkfd'
-                },
                 {
                   url: 'https://res.cloudinary.com/dyahczaxt/image/upload/v1685335292/CampVentures/jbezcdjave1suf5gv8ny.jpg',
                   filename: 'CampVentures/jbezcdjave1suf5gv8ny'
