@@ -15,6 +15,7 @@
 
   )
   .addTo(map);
+  map.addControl(new mapboxgl.NavigationControl());
    
 //   // Create a default Marker, colored black, rotated 45 degrees.
 //   const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })

@@ -11,6 +11,7 @@ const ExpressError = require('./utils/expressError');
 const session=require('express-session');
 const flash=require('connect-flash');
 const mongoose = require('mongoose');
+const mongoSanitize = require('express-mongo-sanitize');
 const methodOverride = require('method-override');
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
@@ -39,6 +40,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'assets')))
+app.use(mongoSanitize());
 
 const sessionConfig={
     secret:'randomShit',
