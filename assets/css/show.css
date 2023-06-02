@@ -1,0 +1,32 @@
+
+@media only screen and (max-width: 998px) { 
+    #spacing-div{
+        display: none;
+    }
+}
+#review-section{
+    min-width: 300px;
+}
+#campground-info{
+    min-width:300px;
+}
+#campground-info-card{
+    border-radius: 20px;
+}
+#campground-image{
+    border-radius: 20px 20px 0 0;
+
+}
+
+.starhover:hover{
+    background-color: #f1c40e;
+}
+#map{
+    border-radius: 20px;
+
+}
+#review-section{
+    border-radius: 20px;
+
+
+}

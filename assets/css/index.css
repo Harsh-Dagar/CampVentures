@@ -1,0 +1,45 @@
+*{
+    font-family: 'Patua One', cursive;
+}
+
+body{
+
+    background-image: linear-gradient(rgba(224, 242, 255, 0.378), rgba(124, 200, 255, 0.19));
+    background-color: aliceblue;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+
+
+}
+#heading{
+    color: rgb(34, 34, 34);
+}
+#map{
+    border-radius: 10px;
+}
+
+#campground-data{
+    border-radius: 20px;
+}
+#campground-description{
+    font-family: sans-serif;
+}
+#campground-location{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: grey;
+    text-shadow: none;
+}
+
+#view-btn{
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    background-color:rgb(88, 177, 255);
+    color: white;
+
+}
+#view-btn:hover{
+    transform: scale(1.1);
+    background-color: rgb(54, 158, 249);
+}
