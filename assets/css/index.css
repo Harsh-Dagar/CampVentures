@@ -17,7 +17,7 @@ body{
     color: rgb(34, 34, 34);
 }
 #map{
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 #campground-data{
@@ -34,7 +34,7 @@ body{
 
 #view-btn{
     transition: all 0.3s ease-in-out;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color:rgb(88, 177, 255);
     color: white;
 
@@ -42,4 +42,17 @@ body{
 #view-btn:hover{
     transform: scale(1.1);
     background-color: rgb(54, 158, 249);
+}
+#camp-image{
+    height: 30vh;
+    width: 30vw;
+    border-radius:10px 0 0 10px ;
+}
+@media only screen and (max-width: 771px) { 
+    #camp-image{
+        height: 30vh;
+        width: 100%;
+        border-radius:10px 10px 0 0 ;
+
+    }
 }

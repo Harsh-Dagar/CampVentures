@@ -14,8 +14,8 @@
 </head>
 
 <body class="d-flex text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
+    <div id="main-container" class="cover-container d-flex h-100 w-100 mx-auto p-3 flex-column">
+        <header id="navbar" class="mb-auto">
             <div>
                 <h2 class="float-md-left mb-2">CampVentures</h2>
                 <nav class="nav nav-masthead justify-content-center float-md-right">
@@ -31,12 +31,16 @@
             </div>
         </header>
         <main class="px-3">
-            <h1 id="center-heading">CampVentures</h1>
-            <p class="lead"> Welcome to CampVentures! <br> Jump right in and explore our many campgrounds. <br>
+            <div id="heading-container">
+                <h1 id="center-heading" class=" mb-2">CampVentures</h1>
+        </div>
+            <p class="mb-4"> Welcome to CampVentures! <br> Jump right in and explore our many campgrounds. <br>
                 Feel free to share some of your own and comment on others!</p>
-            <a id="viewcamp-btn" href="/campgrounds" class="btn btn-lg  font-weight-bold  ">
-                View Campgrounds
+       
+            <a id="viewcamp-btn" href="/campgrounds" class="btn btn-sm">
+               View Campgrounds
             </a>
+       
         </main>
 
         <footer class="mt-auto text-white-50">

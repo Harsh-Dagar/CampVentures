@@ -19,7 +19,7 @@ const randGen=(arr)=>{
 }
 const seedDB=async()=>{
     await Campground.deleteMany({});
-    for(let i=0;i<50;i++){
+    for(let i=0;i<10;i++){
         let randCity1000=Math.floor(Math.random()*1000);
         let price=Math.floor(Math.random()*2000)+1000;
         const cmp=new Campground({
@@ -34,11 +34,7 @@ const seedDB=async()=>{
                  coordinates: [ cities[randCity1000].longitude,cities[randCity1000].latitude ]
             },
             images: [
-                {
-                  url: 'https://res.cloudinary.com/dyahczaxt/image/upload/v1685335292/CampVentures/jbezcdjave1suf5gv8ny.jpg',
-                  filename: 'CampVentures/jbezcdjave1suf5gv8ny'
-
-                }
+    
               ]
             
         })

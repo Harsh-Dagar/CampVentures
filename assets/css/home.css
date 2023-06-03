@@ -34,27 +34,53 @@ body {
     color: #333;
     text-shadow: none;
 }
+#main-container{
+    width: 100vw;
+    min-width: 300px;
+}
 
 #center-heading{
-        font-size: 5em;
         background: -webkit-linear-gradient(rgb(255, 173, 173), rgb(255, 37, 226));
         -webkit-background-clip: text;
         background-clip:text;
+   
         -webkit-text-fill-color:rgba(255, 255, 255, 0.485);
 }
+@media only screen and (max-width: 508px) { 
+    #center-heading{
+        
+
+    }
+}
+
 
 #viewcamp-btn{
     transition: all 0.3s ease-in-out;
     background-color: rgb(88, 177, 255);
-    border:none;
     color: white;
-    border-radius: 10px;
-
-}
-
-#viewcamp-btn:hover{
+    border:none;
     transform: scale(1.3);
+    border-radius: 10px;
+}
+#viewcamp-btn:hover{
+    transform: scale(1.4);
     background-color: rgb(54, 158, 249);
+}
+@media only screen and (max-width: 508px) { 
+    #viewcamp-btn{
+        transition: all 0.3s ease-in-out;
+        background-color: rgb(88, 177, 255);
+        color: white;
+        border:none;
+
+    transform: scale(1);
+
+        border-radius: 10px;
+    }
+    #viewcamp-btn:hover{
+        transform: scale(1.3);
+        background-color: rgb(54, 158, 249);
+    }
 
 
 }

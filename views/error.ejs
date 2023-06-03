@@ -3,6 +3,8 @@
 
 <div class="alert alert-danger text-center" role="alert">
     <h4 class="alert-heading display-6"><%= err.message %></h4>
+    <% if(process.env.NODE_ENV!=='production'){ %>
     <hr>
     <p class="mb-0"><%= err.stack %></p>
+    <% } %>
   </div>

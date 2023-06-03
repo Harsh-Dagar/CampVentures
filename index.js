@@ -2,6 +2,8 @@ if(process.env.NODE_ENV!=='production'){
     require('dotenv').config();
 }
 
+
+
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -9,6 +11,7 @@ const path = require('path');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/expressError');
 const session=require('express-session');
+const MongoStore = require('connect-mongo');
 const flash=require('connect-flash');
 const mongoose = require('mongoose');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -16,14 +19,18 @@ const methodOverride = require('method-override');
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
 const User = require('./models/user');
+const helmet=require('helmet');
 
+const dbURL=process.env.DB_URL || 'mongodb://localhost:27017/camp-venture';
+console.log("**************************************",dbURL);
 
 
 const campgrounds=require('./routes/campgrounds');
 const reviews=require('./routes/reviews');
 const userRegister=require('./routes/userReg');
 // mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://localhost:27017/camp-venture',{
+//
+mongoose.connect(dbURL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -41,8 +48,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'assets')))
 app.use(mongoSanitize());
+const secret =process.env.SECRET||'thisshouldbeabettersecret!';
+const store = MongoStore.create({
+    mongoUrl: dbURL,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret:secret
+    }
+});
 
 const sessionConfig={
+    store,
     secret:'randomShit',
     resave:false,
     saveUninitialized:true,
@@ -55,9 +71,16 @@ const sessionConfig={
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(helmet({
+    contentSecurityPolicy: false
+}))
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 // use static authenticate method of model in LocalStrategy
 passport.use(new LocalStrategy(User.authenticate()));
